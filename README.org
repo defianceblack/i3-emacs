@@ -4,10 +4,6 @@
 #+MAINTAINER: Defiance Black
 #+COPYRIGHT: 2022, Defiance Black
 
-* i3-emacs
-  :PROPERTIES:
-  :CUSTOM_ID: i3-emacs
-  :END:
 /Note: Emacs 24.3 or greater required./
 
 i3 emacs integration.
