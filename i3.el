@@ -59,13 +59,40 @@
     (:command u32r))
   "Data structure for an i3 IPC message.")
 
+(defun i3-get-workspaces ()
+  "Return a list of current workspaces.
+id: internal ID (C pointer) of the workspace.
+num: The logical number of the workspace.
+
+See i3 wm IPC docs for details."
+  (i3-command 1))
+
+(defun i3-get-outputs ()
+  "Return a list of the current outputs. See i3 wm IPC docs for details"
+  (i3-command 3))
+
 (defun i3-get-tree-layout ()
   "Return a layout tree.  See i3 wm IPC docs for details."
   (i3-command 4))
 
-(defun i3-get-workspaces ()
-  "Return a list of current workspaces.  See i3 wm IPC docs for details."
-  (i3-command 1))
+(defun i3-get-marks ()
+  "Return a list of all currently set marks. See i3 wm IPC docs for details."
+  (i3-command 5))
+
+(defun i3-get-bar-config ()
+  "Return the specified bar configuration or
+the names of all bar configurations if empty.
+See i3 wm IPC docs for details."
+  (i3-command 6))
+
+(defun i3-get-version ()
+  "Return the current version of i3. See i3 wm IPC docs for details."
+  (i3-command 7))
+
+(defun i3-get-binding-modes ()
+  "Return the names of all currently configured binding modes.
+See i3 wm IPC docs for details."
+  (i3-command 8))
 
 (defun i3-command (command &optional payload)
   "Send COMMAND to i3 and return the response.
