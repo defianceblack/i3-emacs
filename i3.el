@@ -86,13 +86,14 @@ See i3 wm IPC docs for details of COMMAND numbers and PAYLOAD."
 
 (defun i3-get-or-make-client ()
   "Create or return a current process connected to i3 wm IPC."
-  (unless (bound-and-true-p i3-client)
-    (setq i3-client (make-network-process :name i3-process-name :buffer (get-buffer-create i3-process-name)
-                                          :coding '(raw-text-unix . raw-text-unix)
-                                          :family 'local
-                                          :filter #'i3-response-filter
-                                          :sentinel #'i3-sentinel
-                                          :service (i3-chomp (shell-command-to-string "i3 --get-socketpath")))))
+  (or (bound-and-true-p i3-client)
+      (setq i3-client (make-network-process :name i3-process-name
+                                            :buffer (get-buffer-create i3-process-name)
+                                            :coding '(raw-text-unix . raw-text-unix)
+                                            :family 'local
+                                            :filter #'i3-response-filter
+                                            :sentinel #'i3-sentinel
+                                            :service (i3-chomp (shell-command-to-string "i3 --get-socketpath")))))
   i3-client)
 
 ;;; Internal functions
