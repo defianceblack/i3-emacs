@@ -60,11 +60,7 @@
   "Data structure for an i3 IPC message.")
 
 (defun i3-get-workspaces ()
-  "Return a list of current workspaces.
-id: internal ID (C pointer) of the workspace.
-num: The logical number of the workspace.
-
-See i3 wm IPC docs for details."
+  "Return a list of current workspaces. See i3 wm IPC docs for details."
   (i3-command 1))
 
 (defun i3-get-outputs ()
